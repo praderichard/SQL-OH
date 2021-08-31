@@ -33,39 +33,6 @@
     },
     "resources": [
         {
-            "apiVersion": "2019-04-01",
-            "name": "[variables('virtualNetworkGatewayName')]",
-            "type": "Microsoft.Network/virtualNetworkGateways",
-            "location": "[variables('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/publicIPAddresses/', variables('vgPublicIpAddressName'))]"
-            ],
-            "tags": {},
-            "properties": {
-                "gatewayType": "[variables('vgGatewayType')]",
-                "ipConfigurations": [
-                    {
-                        "name": "default",
-                        "properties": {
-                            "privateIPAllocationMethod": "Dynamic",
-                            "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('gatewaySubnetName'))]"
-                            },
-                            "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses', variables('vgPublicIpAddressName'))]"
-                            }
-                        }
-                    }
-                ],
-                "vpnType": "[variables('vgVpnType')]",
-                "sku": {
-                    "name": "VpnGw1",
-                    "tier": "VpnGw1",
-                    "capacity": 2
-                }
-            }
-        },
-        {
             "type": "Microsoft.DataMigration/services",
             "apiVersion": "2018-04-19",
             "name": "[variables('dmsName')]",
