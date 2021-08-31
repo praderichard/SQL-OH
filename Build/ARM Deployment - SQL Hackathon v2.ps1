@@ -136,7 +136,7 @@ $expiryTime = (Get-Date).AddYears(1)
 New-AzStorageContainerStoredAccessPolicy -Container migration -Policy $storagePolicyName -Permission rwld -ExpiryTime $expiryTime -Context $Context -StartTime(Get-Date) 
 $SASUri = (New-AzStorageContainerSASToken -Name "migration" -FullUri -Policy $storagePolicyName -Context $Context)
 
-$JsonSASURI = $SASUri | ConvertTo-Json
+$JsonSASURI = $SASUri #| ConvertTo-Json
 
 ###################################################################
 # Setup SQL Legacy Server
