@@ -47,15 +47,6 @@
             "properties": {
                 "virtualSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('managementSubnetName'))]"
             }
-        },
-        {
-            "apiVersion": "2019-04-01",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[variables('vgPublicIpAddressName')]",
-            "location": "[variables('location')]",
-            "properties": {
-                "publicIPAllocationMethod": "Dynamic"
-            }
-        }  
+        }
     ]
 }
