@@ -6,9 +6,10 @@
 $InstallPath = 'C:\Install'
 $LabsPath = 'C:\_SQLHACK_\LABS'
 $Labs1Path = 'C:\_SQLHACK_\LABS\01-Data_Migration'
-$Labs2Path = 'C:\_SQLHACK_\LABS\02-SSIS_Migration'
+$Labs2Path = 'C:\_SQLHACK_\LABS\02-Administering_Monitoring'
 $Labs3Path = 'C:\_SQLHACK_\LABS\03-Security'
 $Labs3SecurityPath = 'C:\_SQLHACK_\LABS\03-Security\SQLScripts'
+$Labs4Path = 'C:\_SQLHACK_\LABS\04-SSIS_Migration'
 
 ##################################################################
 #Create Folders for Labs and Installs
@@ -19,6 +20,7 @@ md -Path $Labs1Path
 md -Path $Labs2Path
 md -Path $Labs3Path
 md -Path $Labs3SecurityPath
+md -Path $Labs4Path
 
 $SASURIKey = $SASURIKey | ConvertFrom-Json
 
@@ -35,7 +37,20 @@ $SASURIKey | out-file -FilePath "$Labs1Path\SASKEY.txt"
 
 #Download Items for LAB 02
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/02%20SSIS%20Migration/02-SSIS%20Migration.zip?raw=true' -OutFile "$InstallPath\Lab2.zip"
+Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/02%20Admin%20Monitoring/DB%20Administering%20+%20Monitoring%20Lab%20Step-by-step.pdf' -OutFile "$Labs2Path\DB Administering Monitoring Lab Step-by-step.pdf"
+Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/02%20Admin%20Monitoring/Part_02_Monitoring_Lab_1.sql' -OutFile "$Labs2Path\Part_02_Monitoring_Lab_1.sql"
+#Download Items for LAB 03
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/03%20Security/Hands-on-Lab%20-%20Data%20Security.pdf' -OutFile "$Labs3Path\Hands-on Lab - Security.pdf"
+$StorageAccount | out-file -FilePath "$Labs3Path\StorageAccount.txt"
+
+Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/2.%20Auditing.sql' -OutFile "$Labs3SecurityPath\2.Auditing.sql"
+Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/3.%20Dynamic%20Data%20Masking.sql' -OutFile "$Labs3SecurityPath\3.Dynamic Data Masking.sql"
+Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/4.%20TDE%20and%20Password%20Reset.sql' -OutFile "$Labs3SecurityPath\4.TDE and Password Reset.sql"
+
+#Download Items for LAB 04
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/04%20SSIS%20Migration/04-SSIS%20Migration.zip?raw=true' -OutFile "$InstallPath\Lab4.zip"
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 function Unzip
@@ -45,16 +60,9 @@ function Unzip
     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
 }
 
-Unzip "$InstallPath\Lab2.zip" "$Labs2Path"
+Unzip "$InstallPath\Lab4.zip" "$Labs4Path"
 
-#Download Items for LAB 03
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/03%20Security/Hands-on-Lab%20-%20Data%20Security.pdf' -OutFile "$Labs3Path\Hands-on Lab - Security.pdf"
-$StorageAccount | out-file -FilePath "$Labs3Path\StorageAccount.txt"
 
-Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/2.%20Auditing.sql' -OutFile "$Labs3SecurityPath\2.Auditing.sql"
-Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/3.%20Dynamic%20Data%20Masking.sql' -OutFile "$Labs3SecurityPath\3.Dynamic Data Masking.sql"
-Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/4.%20TDE%20and%20Password%20Reset.sql' -OutFile "$Labs3SecurityPath\4.TDE and Password Reset.sql"
 
 #########################################################################
 #Install Applications
@@ -75,7 +83,7 @@ Invoke-WebRequest 'https://go.microsoft.com/fwlink/?LinkId=708343&clcid=0x409' -
 Start-Process -file 'C:\Install\StorageExplore.exe' -arg '/VERYSILENT /ALLUSERS /norestart /LOG C:\Install\StorageExplore_install.txt'
 
 # Download and install SQL Server Management Studio
-Invoke-WebRequest 'https://go.microsoft.com/fwlink/?linkid=2088649' -OutFile 'C:\Install\SSMS-Setup.exe'
+Invoke-WebRequest 'https://go.microsoft.com/fwlink/?linkid=2168063' -OutFile 'C:\Install\SSMS-Setup.exe'
 start-sleep 5
 #$pathArgs = {C:\Install\SSMS-Setup.exe /S /v/qn}
 #Invoke-Command -ScriptBlock $pathArgs 
