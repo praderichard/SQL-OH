@@ -27,7 +27,7 @@ $SASURIKey = $SASURIKey | ConvertFrom-Json
 #Download Items for LAB 01
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/Background.pdf' -OutFile "C:\_SQLHACK_\Lab Background.pdf"
-Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/01%20Data%20Migration/01-%20DB%20Migration%20LAB%20and%20Parameters%20Overview.pdf' -OutFile "$Labs1Path\01- DB Migration Lab and Parameters.pdf"
+Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/01%20Data%20Migration/01-%20DB%20Migration%20Lab%20and%20Parameters%20Overview.pdf' -OutFile "$Labs1Path\01- DB Migration Lab and Parameters.pdf"
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/01%20Data%20Migration/SimpleTranReportApp.exe?raw=true' -OutFile "$Labs1Path\SimpleTranReportApp.exe"
 Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/01%20Data%20Migration/Migration%20Helper%20Script.sql' -OutFile "$Labs1Path\Migration Helper Script.txt"
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/01%20Data%20Migration/02-%20DB%20Migration%20Lab%20Step-by-step.pdf' -OutFile "$Labs1Path\02- DB Migration Lab Step-by-step.pdf"
