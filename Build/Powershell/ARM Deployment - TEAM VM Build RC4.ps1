@@ -19,14 +19,14 @@ md -Path $InstallPath
 md -Path $Labs1Path
 md -Path $Labs2Path
 md -Path $Labs3Path
-md -Path $Labs3SecurityPath
+#md -Path $Labs3SecurityPath
 md -Path $Labs4Path
 
 $SASURIKey = $SASURIKey | ConvertFrom-Json
 
 #Download Items for LAB 01
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/Background.pdf' -OutFile "C:\_SQLHACK_\Lab Background.pdf"
+#Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/Background.pdf' -OutFile "C:\_SQLHACK_\Lab Background.pdf"
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/01%20Data%20Migration/01-%20DB%20Migration%20Lab%20and%20Parameters%20Overview.pdf' -OutFile "$Labs1Path\01- DB Migration Lab and Parameters.pdf"
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/01%20Data%20Migration/SimpleTranReportApp.exe?raw=true' -OutFile "$Labs1Path\SimpleTranReportApp.exe"
 Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/01%20Data%20Migration/Migration%20Helper%20Script.sql' -OutFile "$Labs1Path\Migration Helper Script.txt"
@@ -38,15 +38,16 @@ $SASURIKey | out-file -FilePath "$Labs1Path\SASKEY.txt"
 #Download Items for LAB 02
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/blob/master/Hands-On%20Lab/02%20Admin%20Monitoring/01-%20DB%20Administering%20%2B%20Monitoring%20Lab%20Step-by-step.pdf' -OutFile "$Labs2Path\01- DB Administering Monitoring Lab Step-by-step.pdf"
+Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/02%20Admin%20Monitoring/Part_01_Monitoring_Lab_1.sql' -OutFile "$Labs2Path\Part_01_Monitoring_Lab_1.sql"
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/02%20Admin%20Monitoring/Part_02_Monitoring_Lab_1.sql' -OutFile "$Labs2Path\Part_02_Monitoring_Lab_1.sql"
 #Download Items for LAB 03
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest 'https://github.com/praderichard/SQL-OH/raw/master/Hands-On%20Lab/03%20Security/01-%20Security%20Lab.pdf' -OutFile "$Labs3Path\01- Security Lab.pdf"
 $StorageAccount | out-file -FilePath "$Labs3Path\StorageAccount.txt"
 
-Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/2.%20Auditing.sql' -OutFile "$Labs3SecurityPath\2.Auditing.sql"
-Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/3.%20Dynamic%20Data%20Masking.sql' -OutFile "$Labs3SecurityPath\3.Dynamic Data Masking.sql"
-Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/4.%20TDE%20and%20Password%20Reset.sql' -OutFile "$Labs3SecurityPath\4.TDE and Password Reset.sql"
+#Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/2.%20Auditing.sql' -OutFile "$Labs3SecurityPath\2.Auditing.sql"
+#Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/3.%20Dynamic%20Data%20Masking.sql' -OutFile "$Labs3SecurityPath\3.Dynamic Data Masking.sql"
+#Invoke-WebRequest 'https://raw.githubusercontent.com/praderichard/SQL-OH/master/Hands-On%20Lab/03%20Security/SQLScripts/4.%20TDE%20and%20Password%20Reset.sql' -OutFile "$Labs3SecurityPath\4.TDE and Password Reset.sql"
 
 #Download Items for LAB 04
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
